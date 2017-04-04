@@ -1,0 +1,26 @@
+
+\section{Motivation}
+
+
+\quad \quad The main aim of the project is to learn about embedded systems as a whole, and along the way display the applicability and robustness of wireless technology in robotics. We do so using a movable, proof-of-concept rover which we then control using a GUI interface accessible through either a mobile phone or laptop, anywhere in the vicinity. A simple extension of this notion would allow the control of robots in other countries or even on other planets. 
+
+
+\section{Problem Definition}
+
+\begin{enumerate}
+	\item To construct a movable robot, with a 15x8 chassis, two wheels and three IR sensors attached to a makeshift cardboard bottom, and a Raspberry Pi 3B and DSG powerbank secured to the top. The IR sensor board and motor drivers are secured to the chassis with electrical tape or plastic cords to prevent movement.
+	
+	\item The Raspberry Pi automatically connects to a known Wireless LAN at bootup, thus allowing unsupervised bootups at regular intervals.
+	
+	\item A Web 2.0 interface would be served via a Python Django server to a computer ${}^{\ref{WhatsAComputer}}$ connected to the same Wifi network as the Pi. This interface serves the controls \textit{"Forwards"}, \textit{"Backwards"}, \textit{"Left"}, \textit{"Right"} and \textit{"Stop"}. The interface is served at an IP address known to the computer, removing the problem of reconfiguration. 
+
+	\footnotetext[1]{\label{WhatsAComputer} Note that our only criterion for \textit{computer} is a device with a JavaScript-enabled web browser that is able to communicate via HTTP requests. We may thus use mobile phones (Android, iOS etc.) or laptop or desktop computers to access this interface.}	% Source for footnotes: latex-tutorial.com/tutorials/beginners/07b-footnotes/
+	
+	\item The interface would additionally display the status of three IR sensors as binary values, e.g. $010$, indicating the middle senor was triggered. This would be updated every few seconds without reloading the page. This is for reference of the human controller, similar to a video feed (which was infeasible due to bandwidth constraints).
+	
+	\item On clicking one of the buttons, a request would be sent over the Wireless connection to the Django server, which would in turn send a message to the motor drivers, moving the rover in the desired direction (or stopping it). 
+
+\end{enumerate}
+
+Note that this is a proof-of-concept project. Every stage would require changes in hardware materials and electronics to build a workable rover system.
+

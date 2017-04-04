@@ -1,0 +1,166 @@
+\documentclass[a4paper, 12pt, onecolumn]{article} 
+
+% To change the distance between the columns when using `twocolumn`:
+\setlength{\columnsep}{0.5in} % Source: tex.stackexchange.com/a/24563/110560
+
+
+%% Read https://texblog.org/2012/08/29/changing-the-font-size-in-latex/ for reference on font sizes.
+
+% For margins. 
+% Source: kb.mit.edu/confluence/pages/viewpage.action?pageId=3907057. 
+% Also see: https://www.sharelatex.com/learn/Page_size_and_margins
+\usepackage[margin=1.0in]{geometry}  
+
+ % For the "comment" environment to make LaTeX comments
+\usepackage{verbatim} 
+
+% For equations \begin{equation*}:
+\usepackage{amsmath, amssymb}  
+
+% For tables using \begin{longtabu}:
+\usepackage{tabu, ltxtable, tabularx, longtable}
+
+% For captions on longtabu, see tex.stackexchange.com/q/268927/110560
+\usepackage{caption}
+\captionsetup[longtable]{skip=9pt, margin=0.1\textwidth,
+	 justification=justified, singlelinecheck=false}	% Source: tex.stackexchange.com/a/95208/110560 and tex.stackexchange.com/a/3178/110560 and tex.stackexchange.com/a/88817/110560 and tex.stackexchange.com/a/37793/110560
+
+% For images using \begin{figure} and for \scalebox{}:
+\usepackage{graphicx}
+\graphicspath{Images/}  % Location of the graphics files (set up for graphics to be in PDF format)
+
+% For using bullets in description lists.
+\usepackage{enumitem}
+
+% For Neural Network Diagrams, see http://tex.stackexchange.com/a/132471/110560
+\usepackage{tikz}
+\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
+
+
+\addtolength{\footnotesep}{1mm} % Source: tex.stackexchange.com/a/141938/110560.
+
+% For URLs with \url{blahblahblah}
+\usepackage{url} % Source: http://tex.stackexchange.com/a/40222/110560
+
+% For rotating figures with \begin{sidewaysfigure}
+\usepackage{rotating}
+
+\begin{document}
+	
+	
+
+%\hspace{5em} Normalization:
+%\begin{equation*}
+%x_{i, 0...1} = 
+%\frac	{ x_{i} - x_{min}	}
+%{ x_{max} - x_{min}	}
+%\end{equation*}
+
+	
+%% NSL Test Set with SMOTE and Random Undersampling:
+%\centering \begin{longtabu} to \textwidth {| l | c | c | c | c | } \hline
+%	& Precision & Recall	& F1 score  & Support	\\ \hline
+%	DoS   	& 93\%   	& 84\%      & 88\%      & 7457		\\ \hline
+%	Normal	& 73\%   	& 95\%      & 83\%      & 9710		\\ \hline
+%	Probe 	& 64\%   	& 57\%      & 60\%      & 2421		\\ \hline
+%	R2L   	& 64\%   	& 12\%      & 20\%      & 2754		\\ \hline
+%	U2R 	&  5\%     	& 16\%      & 8\%       & 200		\\ \hline
+%	Total 	&  76\%     & 76\%   	& 76\%   	& 22542		\\ \hline
+%	\caption{Decision Tree on NSL Test Set with SMOTE and Random Undersampling. Total Accuracy = 76.32\%}
+%\end{longtabu}
+
+
+%\begin{figure}[!h]
+%	\centerline{}
+%	\caption{An Artificial Neural Network with one hidden layer, working on a dataset with three predictors and two target classes.}
+%	\label{fig: ANN}
+%\end{figure}
+
+
+%\input{"Sections/Notation and nomenclature"}
+%\input{"Sections/The goal of Backpropagation"}
+%\input{"Sections/Forward pass"}
+
+
+%\scalebox{1.7}{
+	%{}^{14}\text{C}^{15}	%% Source: tex.stackexchange.com/a/30563/110560
+	
+%}
+
+%\input{"Diagrams/Generic Neuron"}
+%\\
+%\centering Generic Neuron
+%\input{"Diagrams/Example Network"}
+
+
+\title{Mobile-controlled wireless rover with IR sensors}
+
+\author{
+	Abhishek Divekar (131080051) \\ 
+	Vaibahav Savla (131080051) \\ 
+	Meet Parekh (131080051) \\ 
+	\\
+	Veermata Jijabai Technological Institute\\
+	H. R. Mahajani Marg, Matunga, Mumbai - 400031,\\ 
+	Maharashtra, India\\
+}
+
+\date{}	%Source: tex.stackexchange.com/a/2761/110560
+
+\maketitle
+
+\thispagestyle{empty}
+
+\begin{abstract}
+	Wireless, sensor-driven robotics is a discipline with ready applications in military, factory and civilian uses. While they initially lacked robustness due to the inherent problems associated with wireless technology such as fluctuating signal strength and difficulty in debugging, the technology has now matured such that several critical services and mechanisms now operate wirelessly. Coupled with the ubiquity of Wireless LAN technology and the Internet, we find that there are some interesting use cases for remotely-controllable vehicles. 
+	
+	In this paper we both provide the specifications for and build a movable robot which may be controlled from any device connected to the same Wireless LAN, via a Web 2.0 interface. IR sensors feed information back to the controlling human, allowing them to maneuver accordingly based on the terrian.
+	
+	While not suitable for industry or military grade applications, this setup was found to be robust from an experimental and academic viewpoint.
+\end{abstract}
+
+
+
+\input{Introduction}
+
+\clearpage
+
+\input{Motivation}
+
+\clearpage
+
+\input{"Methodology and Implementation"}
+
+
+
+\clearpage
+
+\begin{thebibliography}{10}	%% Source: met.guc.edu.eg/OnlineTutorials/LaTeX/Bibliographies%20and%20Citation.aspx
+	
+	\bibitem{RobotSizes} NASA, \textit{Mars Science Laboratory Landing}, pg 34: \\
+	\url{https://www.jpl.nasa.gov/news/press_kits/MSLLanding.pdf}
+	
+	
+	\bibitem{Pi3BPinDiagram} Raspberry Pi 3B pin diagram: \\
+	\url{http://pi4j.com/pins/model-3b-rev1.html}
+
+	
+	\bibitem{300RPMMotors} 300 RPM motors specification: \\
+	\url{http://robokits.co.in/motors/high-torque-dc-geared-motor-300rpm}
+	
+	\bibitem{L293D_MotorDriver} L293D motor driver specification: \\
+	\url{https://www.engineersgarage.com/sites/default/files/L293D.pdf}
+	
+
+	\bibitem{RPi3BSpecs} Raspberry Bi 3 Model B specifications: \\
+	\url{https://www.raspberrypi.org/documentation/hardware/computemodule/RPI-CM-DATASHEET-V1_0.pdf}
+		
+	
+	
+	
+	\bibitem{latexMath} Graetzer George, \emph{Math Into \LaTeX},
+	BirkhÃ¤user Boston; 3 edition (June 22, 2000).
+	
+\end{thebibliography}
+
+\end{document}  % The End
