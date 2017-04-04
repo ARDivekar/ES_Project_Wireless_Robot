@@ -2,7 +2,8 @@
 	
 	\subsection{Hardware ${}^{\ref{HardwareSource}}$ }
 
-	\begin{enumerate}[topsep=-2pt, itemsep=10mm]
+	\begin{enumerate}[topsep=-2pt, itemsep=6mm]
+		
 		\item \textbf{Raspberry Pi 3 Model B:} 
 		
 			The Raspberry Pi 3 is a hobbyist microcontroller board which can be used for a variety of embedded systems projects. 
@@ -30,12 +31,21 @@
 		
 		
 		
+		
+		\item \textbf{Chassis:} 
+		
+		All the circuitry and batteries is fixed on top of a acrylic chassis. The chassis has 2 tyres each connected to a motor and 1 caster wheel.
+		
+		\item \textbf{Batteries:} 
+		
+		To power the Raspberry Pi we will use a 5V portable power bank and to power the motors we use 2 9V batteries connected in series. 
+				
+		
+		\item \textbf{Motors:} 
+		
+			The robot moves using two wheels each driven by a 1000 RPM DC motor. These DC motors are connected with L293D IC which provides and H bridge to turn one motor and other off or both simultaneously in same direction or different direction. 
 			
-		\clearpage
-		
-		\item \textbf{Wheels and motors:} 
-		
-			The robot moves using two wheels each driven by a 300 RPM DC motor. These DC motors are connected with L293D IC which provides and H bridge to turn one motor and other off or both simultaneously in same direction or different direction. 
+			We connect the IR sensor array and the motor driver to the Raspberry Pi and then connect 2 1000 rpm motors to the motor driver.  
 		
 		
 		\item \textbf{L293D Motor Driver:} 
@@ -102,7 +112,7 @@
 	
 	\subsection{Software}
 	
-	\begin{enumerate}[topsep=-2pt, itemsep=10mm]
+	\begin{enumerate}[topsep=-2pt, itemsep=6mm]
 		\item \textbf{Raspbian Jesse:} 
 		
 			It is a full-featured Linux operating system running a version of the Linux kernel and drivers, allowing seamless integration with external hardware such as cameras, ethernet, and Wireless LAN connections. Raspbian is highly optimized for the Raspberry Pi line's low-performance ARM CPUs.
@@ -134,13 +144,9 @@
 		
 		We use Django to serve the frontend GUI interface on an HTTP GET request, and one clicking a button, we visit the appropriate link (e.g. \url{172.168.42.1/controls/left}) and perform the action specified there. The server imports the \textit{RPi.GPIO} package and sets the pins high or low, depending on the command. This in turn causes the 
 		
-		We also use the frontend to display the current status of the IR sensors as a string of zeros and ones, such as:
-		
-		\begin{equation}
-			\begin{bmatrix}
+		We also use the frontend to display the current status of the IR sensors as a string of zeros and ones, such as: $\begin{bmatrix}
 			0 & 1 & 1
-			\end{bmatrix}
-		\end{equation}
+			\end{bmatrix}$
 		
 		Which says the middle and right IR sensors are triggered, meaning that portion of the ground is white or light-colored. We retrieve this information using an AJAX call to \url{172.168.42.1/ir-sensors} and display it on the frontend. We update this value every 0.5 seconds using an AJAX call loop.
 		

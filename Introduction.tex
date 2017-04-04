@@ -22,7 +22,7 @@
 
 	\item The microcontroller used is the Raspberry Pi 3, a popular and well-supported hobbyist board. It comes bundled with an onboard Wireless chip and 40 General Purpose Input/Output pins for interfacing with the motors and IR sensors. Power is supplied via a pair of 9v batteries (to the motors) and a 5600 mAh powerbank (to the Pi). The controlling GUI is served by a Python Django server running on Raspbian, a Linux-based distribution installed on the Raspberry Pi’s external memory.
 
-	\item The DC motors that move the rover around are standard 300 rpm high-torque motors \cite{300RPMMotors} (low torque motors were unsuccessful in moving the rover on even flat surfaces). The power is delivered via 9v batteries, and controlled via a L293D motor driver. 
+	\item The DC motors that move the rover around are standard 1000 rpm high-torque motors \cite{1000RPMMotors} (low torque motors were unsuccessful in moving the rover on even flat surfaces). The power is delivered via 9v batteries, and controlled via a L293D motor driver. 
 
 
 	\item An important module of the rover is the trio of IR sensors on the bottom panel, around one inch above the ground. They are used to detect the terrain (black or white) and can be used for line-following even in dim environment. While sufficient for our current purposes, it is possible to replace them with complex, application-specific sensors if required e.g. landmine-detection apparatus for military use cases. \\
