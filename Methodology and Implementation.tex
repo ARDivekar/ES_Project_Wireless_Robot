@@ -2,7 +2,7 @@
 	
 	\subsection{Hardware ${}^{\ref{HardwareSource}}$ }
 
-	\begin{enumerate}[topsep=-2pt, itemsep=2pt]
+	\begin{enumerate}[topsep=-2pt, itemsep=10mm]
 		\item \textbf{Raspberry Pi 3 Model B:} 
 		
 			The Raspberry Pi 3 is a hobbyist microcontroller board which can be used for a variety of embedded systems projects. 
@@ -102,7 +102,7 @@
 	
 	\subsection{Software}
 	
-	\begin{enumerate}
+	\begin{enumerate}[topsep=-2pt, itemsep=10mm]
 		\item \textbf{Raspbian Jesse:} 
 		
 			It is a full-featured Linux operating system running a version of the Linux kernel and drivers, allowing seamless integration with external hardware such as cameras, ethernet, and Wireless LAN connections. Raspbian is highly optimized for the Raspberry Pi line's low-performance ARM CPUs.
@@ -124,13 +124,15 @@
 		
 		\item \textbf{Django server:}
 		
-		DDjango is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. ${}^{\cite{DjangoDescription}}$ It is often used to host large production websites. It is incredibly easy to install, as it is fully encapsulated into a Python library and thus installable with Python \textit{pip} via the command: 
+		Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. ${}^{\cite{DjangoDescription}}$ It is often used to host large production websites. It is incredibly easy to install, as it is fully encapsulated into a Python library and thus installable with Python \textit{pip} via the command: 
 		%Source: http://stackoverflow.com/a/3175170/4900327
 		\begin{verbatim}  
 			$ pip install django
 		\end{verbatim}
 		
-		We use Django to serve the frontend GUI interface on an HTTP GET request, and one clicking a button, we visit the appropriate link (e.g. \url{172.168.42.1/controls/left}) and perform the action specified there. The server imports the \textit{RPi.GPIO} package and 
+		It is a testament to the Raspbian OS and the Django project that it is able to run the Django server as an extremely lightweight hosting server, which can be configured to receive requests from other computers on the same Wifi network by binding the runtime to receive requests from a static IP address. 
+		
+		We use Django to serve the frontend GUI interface on an HTTP GET request, and one clicking a button, we visit the appropriate link (e.g. \url{172.168.42.1/controls/left}) and perform the action specified there. The server imports the \textit{RPi.GPIO} package and sets the pins high or low, depending on the command. This in turn causes the 
 		
 		We also use the frontend to display the current status of the IR sensors as a string of zeros and ones, such as:
 		
@@ -140,8 +142,14 @@
 			\end{bmatrix}
 		\end{equation}
 		
+		Which says the middle and right IR sensors are triggered, meaning that portion of the ground is white or light-colored. We retrieve this information using an AJAX call to \url{172.168.42.1/ir-sensors} and display it on the frontend. We update this value every 0.5 seconds using an AJAX call loop.
 		
-		We retrieve this information using an AJAX call to \url{172.168.42.1/ir-sensors} and display it on the frontend. We update this value every 0.5 seconds using an AJAX call loop. 
+		
+		\item \textbf{Bash:} 
+		
+		Bash scripts or shell scripts are command-line script files (.sh) which run on the Linux platform, allowing us to perform different OS-level functions using system calls. We specify different arguments and flags to change the behavior of the function called. The executable for these are stored in \url{/usr/bin}
+		
+		In our rover, we want the server to start automatically on boot, so we must create a shell script which gets the IP address that the raspberry pi is connected to and then runs the Django server from that address, as described in \cite{DjangoSameWifiCode}. This allows computers on the same wifi network as the Pi to connect to the Pi and send requests and receive responses from the Django server, which in turn allows us to control the rover's movement.
 		
 	\end{enumerate}
 	
