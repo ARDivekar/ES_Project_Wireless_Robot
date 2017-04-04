@@ -45,6 +45,29 @@
 % For rotating figures with \begin{sidewaysfigure}
 \usepackage{rotating}
 
+
+% For code, using as \begin{lstlisting}. Source: http://stackoverflow.com/a/3175141/4900327
+\usepackage{listings}	
+
+% Source: http://stackoverflow.com/a/3175141/4900327
+\lstset{frame=tb,
+	language=bash,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+
 \begin{document}
 	
 	
@@ -156,6 +179,14 @@
 	\url{https://www.raspberrypi.org/documentation/hardware/computemodule/RPI-CM-DATASHEET-V1_0.pdf}
 		
 	
+	\bibitem{RaspbianNaming} Raspbian naming conventions: \\
+	\url{https://www.raspberrypi.org/blog/raspbian-jessie-is-here}
+	
+	\bibitem{RaspbianPIXEL} Raspbian PIXEL: \\
+	\url{https://www.raspberrypi.org/blog/introducing-pixel/}
+	
+	\bibitem{DjangoDescription} Django description: \\
+	\url{https://www.djangoproject.com/}
 	
 	
 	\bibitem{latexMath} Graetzer George, \emph{Math Into \LaTeX},
