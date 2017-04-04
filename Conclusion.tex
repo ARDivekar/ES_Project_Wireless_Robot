@@ -1,0 +1,19 @@
+\section{Conclusion and Further Research}
+
+Thus, we have implemented a wireless rover with a Raspberry Pi 3B controller, running a Django server and which can be connected to from any device with a suitable browser and connected to the same Wireless LAN. 
+
+We have proven that the rover can perform as desired, however there are a few points which must be taken care of in further research or when using such a model in real-life applications:
+
+\begin{enumerate}
+	\item The latency of 1 second is fairly large for high-speed applications. 
+	
+	\item The bootup time is effectively 60 seconds since that much time is required for the Pi to connect to the known Wireless LAN after multiple scans of other networks. This is an OS-level problem and can be rectified by hardcoding the SSID (i.e. Wifi network) to be used; however, this solution trades off flexibility. 
+	
+	\item The IR sensors are simple sensors, and should be replaced by more application-specific hardware e.g. landmine detectors or metal probes.
+	
+	\item A 3g connection could enable a more long-range connection, but would further increase the latency.
+	
+	
+\end{enumerate}
+
+While the rover is a way away from being production-ready, the results obtained should provide sufficient evidence to conclude that Wireless technology has matured enough that it may be robust and cost-effective to deploy it in real-world robotic applications. 
