@@ -105,9 +105,22 @@
 		
 		The \texttt{<script>} tag defines the function \texttt{getIRvals()}, which when called sends an AJAX request to \texttt{192.168.1.100:2/ir\_sensors} and retrieves the current IR sensor readings ("010", etc). We use \texttt{setInterval(...)} to perform the AJAX call in a loop every 0.5 seconds, thus updating the values retrieved from the IR sensors every 0.5 seconds.
 		
-		On clicking one of the buttons \textit{"Forward", "Backward", "Left", "Right" or "Stop"}, the corresponding value of \textit{direction} is passed to \texttt{es\_project/controls/views.py}, which in turn calls the corresponding function in \texttt{es\_project/controls/MazeSolver/rc\_car.py}, which sets the corresponding GPIO pins HIGH or LOW, thus causing the motors to move and draw power from the 9v batteries.
+		On clicking one of the buttons \textit{"Forward", "Backward", "Left", "Right" or "Stop"}, the corresponding value of \textit{direction} is passed to \texttt{es\_project/controls/views.py}, which in turn calls the corresponding function in \texttt{es\_project/controls/MazeSolver/rc\_car.py}, which sets the corresponding GPIO pins HIGH or LOW, thus causing the motors to move and draw power from the 9v batteries. We can sense the underlaying terrian via the IR sensor readings.
 		
-					
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.3\linewidth]{"GUI_on_mobile.png"}
+			\caption{GUI as seen on an Android device connected to the same Wireless LAN as the rover.}
+			\label{fig:GUI_on_mobile}
+		\end{figure}			
 			
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.75\linewidth]{"GUI_on_desktop.jpg"}
+			\caption{GUI as seen from a desktop computer connected to the same Wireless LAN as the rover.}
+			\label{fig:GUI_on_desktop}
+		\end{figure}	
 		
 	\end{description}
