@@ -34,18 +34,21 @@
 	\begin{description}[font=\quad $\circ$, topsep=-2pt, itemsep=2pt]
 		\item \texttt{es\_project/startup.sh}:
 		
-		\begin{lstlisting}[language=bash]
-			ip=`ifconfig wlan0 |grep "inet addr" | cut -d ':' -f 2|cut -d ' ' -f 1`
-			if [[ $ip = *[!\ ]* ]]; then
-				1+1
-			else 
-				ip=`ifconfig wlan1 |grep "inet addr" | cut -d ':' -f 2|cut -d ' ' -f 1`
-			fi
-			echo "Trying to start server at =>  "$ip":2"
-			sudo python /home/pi/Desktop/es_project/manage.py runserver $ip:2
-		\end{lstlisting}
+			% Source: https://www.sharelatex.com/learn/Code_listing
+			\lstinputlisting[language=bash]{"./es_project/startup.sh"}
+			
+			The initial code in this file is used to retrieve the IP address the Pi3 is connected, to using Linux's \texttt{ifconfig} command. We try both \texttt{wlan0} and \texttt{wlan1} (if we had connected an external USB Wifi dongle), and we use whichever is not empty. 
+			
+			Once we have retrieved this IP address, we use it to start the Django server by executing \texttt{manage.py runserver}. We pass the IP address discovered as an argument.
 		
-		The initial code in this file is used to retrieve the IP address the Pi3 is connected, to using Linux's \texttt{ifconfig} command. We try both \texttt{wlan0} and \texttt{wlan1} (if we had connected an external USB Wifi dongle), and we use whichever is not empty. 
 		
-		Once we have retrieved this IP address, we use it to start the Django server by executing \texttt{manage.py runserver}. We pass the IP address discovered as an argument.
+		
+		\item \texttt{es\_project/es\_project/settings.py}:
+		
+			% Source: https://www.sharelatex.com/learn/Code_listing
+			\lstinputlisting[language=bash]{"./es_project/es_project/settings.py"}
+			
+			We have modified the code here to add the function \texttt{get\_current\_ip\_address\_str()}, which we use to get the IP address of the connection using the \texttt{pyiface} package and the regular expressions package \texttt{re}. We then add this to \texttt{ALLOWED\_HOSTS} in the next line.
+		
+		
 	\end{description}
