@@ -1,6 +1,11 @@
 \section{Implementation}
-
+	(Note: all code files are available at:
+	
+	\texttt{https://github.com/ARDivekar/ES\_Project\_Wireless\_Robot/tree/master/es\_project}).
+	\\
+	
 	Once we have connected the Raspberry Pi to the various hardware modules and ensured that the \textit{Raspbain Jesse} installation and \textit{Django server} are working, we may then proceed to create the following code files in a directory \texttt{es\_project} in the home directory of the Raspbian installation. 
+	
 
 %	\clearpage
 %	\begin{figure}
@@ -52,7 +57,7 @@
 			We have modified the code here to add the function \texttt{get\_current\_ip\_address\_str()}, which we use to get the IP address of the connection using the \texttt{pyiface} package and the regular expressions package \texttt{re}. We then add this to \texttt{ALLOWED\_HOSTS} in the next line.
 
 
-
+		\clearpage
 		\item \texttt{es\_project/es\_project/urls.py}		
 			% Source: https://www.sharelatex.com/learn/Code_listing
 			\lstinputlisting[language=python]{"./es_project/es_project/urls.py"}
@@ -63,7 +68,7 @@
 			
 		\item \texttt{es\_project/controls/urls.py}
 			\lstinputlisting[language=python]{"./es_project/controls/urls.py"}
-			
+		\clearpage
 		\item \texttt{es\_project/controls/views.py}
 			\lstinputlisting[language=python]{"./es_project/controls/views.py"}
 			
@@ -71,11 +76,10 @@
 			
 			For this we need to accept and route controls such as \texttt{192.168.1.100:2/controls/left}. We use \texttt{controls/urls.py} to route the requests and we use the function \texttt{controls(..., direction)} in \texttt{controls/views.py} to actually call the code from the \texttt{MazeSolver/rc\_car.py} file.
 			
-		
+		\clearpage
 		\item \texttt{es\_project/controls/MazeSolver/config.py}
 			\lstinputlisting[language=python]{"./es_project/controls/MazeSolver/config.py"}
-
-		\clearpage			
+		
 		\item \texttt{es\_project/controls/MazeSolver/rc\_car.py}
 			\lstinputlisting[language=python]{"./es_project/controls/MazeSolver/rc_car.py"}
 			
@@ -89,7 +93,7 @@
 		
 		\item \texttt{es\_project/ir\_sensors/views.py}
 			\lstinputlisting[language=python]{"./es_project/ir_sensors/views.py"}
-		
+		\clearpage		
 		\item \texttt{es\_project/ir\_sensors/get\_sensor\_data.py}
 			\lstinputlisting[language=python]{"./es_project/ir_sensors/get_sensor_data.py"}
 		
@@ -110,7 +114,7 @@
 		
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.3\linewidth]{"GUI_on_mobile.png"}
+			\includegraphics[width=0.4\linewidth]{"GUI_on_mobile.png"}
 			\caption{GUI as seen on an Android device connected to the same Wireless LAN as the rover.}
 			\label{fig:GUI_on_mobile}
 		\end{figure}			
@@ -118,7 +122,7 @@
 		
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.7\linewidth]{"GUI_on_desktop.jpg"}
+			\includegraphics[width=0.8\linewidth]{"GUI_on_desktop.jpg"}
 			\caption{GUI as seen from a desktop computer connected to the same Wireless LAN as the rover.}
 			\label{fig:GUI_on_desktop}
 		\end{figure}	
