@@ -1,5 +1,51 @@
 \section{Implementation}
 
-	Once we have connected the Raspberry Pi to the various hardware modules and ensured that the Raspbain Jesse installation and Django server are working, we may then proceed to create the following code files in a directory \texttt{es\_project} in the home directory of the Raspbian installation. 
+	Once we have connected the Raspberry Pi to the various hardware modules and ensured that the \textit{Raspbain Jesse} installation and \textit{Django server} are working, we may then proceed to create the following code files in a directory \texttt{es\_project} in the home directory of the Raspbian installation. 
+
+%	\clearpage
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=0.3\linewidth]{es_project_directory_1}
+%		\caption{}
+%		\label{fig:es_project_directory_1}
+%	\end{figure}
 	
-	As a reference, in general the steps outlines in the Django tutorial \cite{DjangoTutorial} should be followed, but some files were modified by us; those changes have been reflected below.
+	\begin{figure}
+		\hfill
+		\subfigure[Main directory \texttt{es\_project/}] {\includegraphics[width=5cm]{es_project_directory_1}}
+		\hfill
+		\subfigure[Sub directory  \texttt{controls/}]{\includegraphics[width=5cm]{es_project_directory_2}}
+		\hfill
+		\subfigure[Sub directory  \texttt{ir\_sensors/}]{\includegraphics[width=5cm]{es_project_directory_3}}
+		\hfill
+		\caption{Django project directory layout}
+	\end{figure}
+	
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=0.3\linewidth]{es_project_directory_2}
+%		\caption{}
+%		\label{fig:es_project_directory_2}
+%	\end{figure}
+
+	
+	As a reference, in general the steps outlines in the Django tutorial \cite{DjangoTutorial} should be followed, but some files were modified by us; those changes have been included below.
+	
+	\begin{description}[font=\quad $\circ$, topsep=-2pt, itemsep=2pt]
+		\item \texttt{es\_project/startup.sh}:
+		
+		\begin{lstlisting}[language=bash]
+			ip=`ifconfig wlan0 |grep "inet addr" | cut -d ':' -f 2|cut -d ' ' -f 1`
+			if [[ $ip = *[!\ ]* ]]; then
+				1+1
+			else 
+				ip=`ifconfig wlan1 |grep "inet addr" | cut -d ':' -f 2|cut -d ' ' -f 1`
+			fi
+			echo "Trying to start server at =>  "$ip":2"
+			sudo python /home/pi/Desktop/es_project/manage.py runserver $ip:2
+		\end{lstlisting}
+		
+		The initial code in this file is used to retrieve the IP address the Pi3 is connected, to using Linux's \texttt{ifconfig} command. We try both \texttt{wlan0} and \texttt{wlan1} (if we had connected an external USB Wifi dongle), and we use whichever is not empty. 
+		
+		Once we have retrieved this IP address, we use it to start the Django server by executing \texttt{manage.py runserver}. We pass the IP address discovered as an argument.
+	\end{description}
