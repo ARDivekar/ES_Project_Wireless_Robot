@@ -12,11 +12,13 @@
 	
 	\begin{figure}
 		\hfill
-		\subfigure[Main directory \texttt{es\_project/}] {\includegraphics[width=5cm]{es_project_directory_1}}
+		\subfigure[Main directory \texttt{es\_project/}] {\includegraphics[height=6cm]{es_project_directory_1}}
 		\hfill
-		\subfigure[Sub directory  \texttt{controls/}]{\includegraphics[width=5cm]{es_project_directory_2}}
+		\subfigure[Sub directory  \texttt{controls/}]{\includegraphics[height=5cm]{es_project_directory_2}}
 		\hfill
-		\subfigure[Sub directory  \texttt{ir\_sensors/}]{\includegraphics[width=5cm]{es_project_directory_3}}
+		\subfigure[Sub directory  \texttt{ir\_sensors/}]{\includegraphics[height=5cm]{es_project_directory_3}}
+		\hfill
+		\subfigure[Sub directory  \texttt{MazeSolver/}]{\includegraphics[height=5cm]{es_project_directory_4}}
 		\hfill
 		\caption{Django project directory layout}
 	\end{figure}
@@ -31,7 +33,7 @@
 	
 	As a reference, in general the steps outlines in the Django tutorial \cite{DjangoTutorial} should be followed, but some files were modified by us; those changes have been included below.
 	
-	\begin{description}[font=\quad $\circ$, topsep=-2pt, itemsep=2pt]
+	\begin{description}[font=\quad $\circ$, topsep=6pt, itemsep=3em]
 		\item \texttt{es\_project/startup.sh}:
 		
 			% Source: https://www.sharelatex.com/learn/Code_listing
@@ -39,16 +41,44 @@
 			
 			The initial code in this file is used to retrieve the IP address the Pi3 is connected, to using Linux's \texttt{ifconfig} command. We try both \texttt{wlan0} and \texttt{wlan1} (if we had connected an external USB Wifi dongle), and we use whichever is not empty. 
 			
-			Once we have retrieved this IP address, we use it to start the Django server by executing \texttt{manage.py runserver}. We pass the IP address discovered as an argument.
+			Once we have retrieved this IP address, we use it to start the Django server by executing \texttt{manage.py runserver}. We pass the IP address discovered as an argument, and use port 2. Thus, when we access the GUI, we would do so from an IP address such as \texttt{192.168.1.100:2/}.
 		
 		
 		
 		\item \texttt{es\_project/es\_project/settings.py}:
-		
 			% Source: https://www.sharelatex.com/learn/Code_listing
 			\lstinputlisting[language=bash]{"./es_project/es_project/settings.py"}
 			
 			We have modified the code here to add the function \texttt{get\_current\_ip\_address\_str()}, which we use to get the IP address of the connection using the \texttt{pyiface} package and the regular expressions package \texttt{re}. We then add this to \texttt{ALLOWED\_HOSTS} in the next line.
+
+
+
+		\item \texttt{es\_project/es\_project/urls.py}		
+			% Source: https://www.sharelatex.com/learn/Code_listing
+			\lstinputlisting[language=bash]{"./es_project/es_project/urls.py"}
+			
+			In this file we add the various urls which we use to access the various functions. The main one is \texttt{controls}, which we would use to access the GUI as: \texttt{192.168.1.100:2/controls} and the IR sensor feed at \texttt{192.168.1.100:2/ir\_sensors}.
+			
+			
+			
+		\item \texttt{es\_project/controls/urls.py}
+			\lstinputlisting[language=bash]{"./es_project/controls/urls.py"}
+			
+		\item \texttt{es\_project/controls/views.py}
+			\lstinputlisting[language=bash]{"./es_project/controls/views.py"}
+			
+			The \texttt{controls/} folder is an "application" in our Django project, which we use to load the GUI and send requests to it from the URL \texttt{192.168.1.100:2/controls}. 
+			
+			For this we need to accept and route controls such as \texttt{192.168.1.100:2/controls/left}. We use \texttt{controls/urls.py} to route the requests and we use the function \texttt{controls(..., direction)} in \texttt{controls/views.py} to actually call the code from the \texttt{MazeSolver/rc\_car.py} file.
+			
 		
+		\item \texttt{es\_project/controls/MazeSolver/config.py}
+			\lstinputlisting[language=bash]{"./es_project/controls/MazeSolver/config.py"}
+		\clearpage			
+		\item \texttt{es\_project/controls/MazeSolver/rc\_car.py}
+			\lstinputlisting[language=bash]{"./es_project/controls/MazeSolver/rc_car.py"}
+			
+			\texttt{/MazeSolver/config.py} is used to denote which pins are used for the motors and IR sensors in a more human-readable manner. \texttt{/MazeSolver/rc\_car.py} performs all the movement functions that are standard with an RC controller car with two wheels (e.g. to move forward, both wheels must turn in the forward direction, to turn right, the right wheel must move forward and the left wheel must move backwards, etc.). We make \texttt{RPi.GPIO} package to control the motors by setting the Raspberry Pi3's General-Purpose Input/Output pins HIGH or LOW.
+			
 		
 	\end{description}
