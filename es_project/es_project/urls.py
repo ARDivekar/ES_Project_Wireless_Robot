@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^controls/', include('controls.urls')),
+    url(r'^ir_sensors/', include('ir_sensors.urls')),
     url(r'^visit_count/', include('visit_count.urls')),
     url(r'^admin/', admin.site.urls),
 ]
